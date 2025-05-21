@@ -22,12 +22,19 @@
       margin-bottom: 1.5em;
       color: #00796b;
     }
+    #coinCounter {
+      font-weight: bold;
+      font-size: 1.4em;
+      margin-bottom: 20px;
+      color: #004d40;
+    }
     iframe {
       border: none;
       width: 320px;
       height: 480px;
       box-shadow: 0 0 15px rgba(0,0,0,0.1);
       border-radius: 10px;
+      overflow: hidden;
     }
     a.redeem-link {
       display: inline-block;
@@ -49,7 +56,11 @@
 <body>
   <h1>Pixawards</h1>
   <p class="subtitle">Earn coins by completing offers and redeem Robux!</p>
+
+  <!-- Coin counter -->
+  <div id="coinCounter">Coins: 0</div>
   
+  <!-- OfferToro Offer Wall -->
   <iframe
     src="https://www.offertoro.com/ifr/show/YOUR_APP_ID/Pixarush/1234"
     title="OfferToro Offer Wall"
@@ -58,5 +69,19 @@
   
   <br />
   <a class="redeem-link" href="redeem.html">Redeem Robux</a>
+
+  <script>
+    // Load coins from localStorage and update counter
+    function updateCoinCounter() {
+      let coins = parseInt(localStorage.getItem('pixacoins')) || 0;
+      document.getElementById('coinCounter').textContent = 'Coins: ' + coins;
+    }
+
+    // Update the counter immediately on page load
+    updateCoinCounter();
+
+    // Optional: update coins every 5 seconds in case they change
+    setInterval(updateCoinCounter, 5000);
+  </script>
 </body>
 </html>
