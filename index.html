@@ -3,44 +3,60 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Pixawards - Earn Rewards</title>
+  <title>Pixawards - Earn Coins & Redeem Robux</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f9fc;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0f7fa;
+      color: #004d40;
       text-align: center;
-      padding: 2em;
-      color: #333;
+      padding: 30px;
+    }
+    h1 {
+      font-size: 2.8em;
+      margin-bottom: 0.2em;
+    }
+    p.subtitle {
+      font-size: 1.2em;
+      margin-top: 0;
+      margin-bottom: 1.5em;
+      color: #00796b;
     }
     iframe {
       border: none;
       width: 320px;
       height: 480px;
-      margin-bottom: 1.5em;
+      box-shadow: 0 0 15px rgba(0,0,0,0.1);
+      border-radius: 10px;
     }
-    a {
+    a.redeem-link {
       display: inline-block;
-      margin-top: 1em;
-      font-weight: bold;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #00796b;
+      color: white;
+      font-weight: 600;
+      font-size: 1.1em;
       text-decoration: none;
-      color: #1a73e8;
-      font-size: 1.2em;
+      border-radius: 6px;
+      transition: background-color 0.3s ease;
     }
-    a:hover {
-      text-decoration: underline;
+    a.redeem-link:hover {
+      background-color: #004d40;
     }
   </style>
 </head>
 <body>
-  <h1>Welcome to Pixawards</h1>
-  <p>Complete offers to earn coins and redeem Robux!</p>
-
+  <h1>Pixawards</h1>
+  <p class="subtitle">Earn coins by completing offers and redeem Robux!</p>
+  
   <iframe
     src="https://www.offertoro.com/ifr/show/YOUR_APP_ID/Pixarush/1234"
-    title="OfferWall"
+    title="OfferToro Offer Wall"
     scrolling="no"
   ></iframe>
-
-  <p><a href="redeem.html">Redeem Robux</a></p>
+  
+  <br />
+  <a class="redeem-link" href="redeem.html">Redeem Robux</a>
 </body>
 </html>
