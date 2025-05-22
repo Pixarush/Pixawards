@@ -2,58 +2,54 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Redeem Robux - Pixawards</title>
+  <title>Redeem Gift Card</title>
   <style>
-    body { font-family: sans-serif; background: #f0f0f0; text-align: center; padding: 2em; }
-    .container { background: white; padding: 2em; max-width: 400px; margin: auto; border-radius: 10px; box-shadow: 0 0 10px #ccc; }
-    input, select, button { margin-top: 1em; padding: 0.5em; width: 100%; font-size: 1em; }
-    .success { color: green; margin-top: 1em; }
-    .error { color: red; margin-top: 1em; }
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 50px;
+      background-color: #f0f0f0;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      margin: 10px;
+    }
+    button {
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h2>Redeem Robux</h2>
-    <p>Coins Available: <span id="coinDisplay">0</span></p>
-    <input type="text" id="username" placeholder="Enter Roblox username">
-    <select id="amount">
-      <option value="10">10 Robux (100 coins)</option>
-      <option value="25">25 Robux (250 coins)</option>
-      <option value="50">50 Robux (500 coins)</option>
-    </select>
-    <button onclick="redeem()">Redeem</button>
-    <div id="message"></div>
-  </div>
+  <h1>Redeem Your Gift Card</h1>
+
+  <!-- 🚀 REDEMPTION FORM -->
+  <form id="redeemForm">
+    <input type="email" id="email" placeholder="Enter your email" required /><br>
+    <button type="submit">Redeem 500 Coins</button>
+  </form>
+
+  <!-- 🔙 BACK BUTTON -->
+  <button onclick="window.location.href='index.html'">← Back to Home</button>
 
   <script>
+    document.getElementById('redeemForm').onsubmit = async (e) => {
+      e.preventDefault();
+      const email = document.getElementById('email').value;
 
-<button onclick="window.location.href='index.html'" style="margin-top: 20px;">← Back to Home</button>
+      const res = await fetch('/redeem', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, amount: 500 })
+      });
 
-    
-    // Get coins from localStorage
-    let coins = parseInt(localStorage.getItem("pixacoins")) || 0;
-    document.getElementById("coinDisplay").textContent = coins;
+      const data = await res.json();
+      alert(data.message || "Something went wrong!");
+    };
+  </script>
+</body>
+</html>
 
-    function redeem() {
-      const username = document.getElementById("username").value.trim();
-      const amount = parseInt(document.getElementById("amount").value);
-      const cost = amount * 10;
-      const msg = document.getElementById("message");
-
-      if (!username) {
-        msg.innerHTML = '<div class="error">Please enter your Roblox username.</div>';
-        return;
-      }
-
-      if (coins >= cost) {
-        coins -= cost;
-        localStorage.setItem("pixacoins", coins);
-        document.getElementById("coinDisplay").textContent = coins;
-        msg.innerHTML = '<div class="success">Successfully redeemed ' + amount + ' Robux for ' + username + '.</div>';
-
-        // Future: send redemption to backend / Google Form / email
-      } else {
-        msg.innerHTML = '<div class="error">Not enough coins.</div>';
       }
     }
   </script>
